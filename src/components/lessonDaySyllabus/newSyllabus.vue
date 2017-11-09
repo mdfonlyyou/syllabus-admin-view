@@ -131,7 +131,7 @@
   export default {
     props: {
       is_syllabus_show:{type: Boolean},
-      is_type_show:{ype: Boolean},
+      is_type_show:{type: Boolean},
     },
     data() {
       return {

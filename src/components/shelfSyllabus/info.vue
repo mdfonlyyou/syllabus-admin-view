@@ -55,7 +55,8 @@
         </el-table-column>
         <el-table-column label="操作" min-width="250" fixed="right">
           <template scope="scope">
-            <el-button type="danger" size="small" @click="syllabusPost(scope.row)">上架课程</el-button>
+            <el-button type="success" size="small" @click="syllabusPost(scope.row)">上架课程</el-button>
+            <el-button type="danger" size="small" @click="syllabusDelete(scope.row)">删除课程</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -86,6 +87,7 @@
 <script>
   import {getOutSyllabusPageById} from '../../assets/syllabus'
   import {postOutSyllabusById} from '../../assets/syllabus'
+  import {syllabusDeleteById} from '../../assets/syllabus'
   import util from '../../assets/util'
   export default {
     data() {
@@ -157,6 +159,26 @@
             });
             vm.loading=false;
             vm.$router.push({path:'/syllabus', query: {id: vm.$route.query.tid}});
+          });
+        }).catch(() => {
+
+        });
+      },
+      //删除指定的课程
+      syllabusDelete(row){
+        var vm=this;
+        this.$confirm('确认删除该课程吗?', '提示', {
+          type: 'warning'
+        }).then(() => {
+          vm.loading=true;
+          syllabusDeleteById(row.id).then(response => {
+            vm.$message({
+              message: '删除课程成功',
+              type: 'success'
+            });
+            vm.syllabusInfo();
+            vm.loading=false;
+            vm.$router.push({path:'/syllabus_out', query: {tid: vm.$route.query.tid}});
           });
         }).catch(() => {
 

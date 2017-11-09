@@ -356,9 +356,6 @@
         //editor.enable(true)   // 实现达到上限字符可删除
         console.log(editor)
       }
-
-
-
     },
     created() {
       this.getSyllabusTypePage();

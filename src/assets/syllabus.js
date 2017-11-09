@@ -51,6 +51,14 @@ export function postOutSyllabusById(id) {
   });
 }
 
+//删除指定的课程
+export function syllabusDeleteById(id) {
+  return fetch({
+    url:'/manager/v1/syllabus/'+id,
+    method: 'delete',
+  });
+}
+
 //列出类型下的下架课程
 export function getOutSyllabusPageById(id, params) {
   return fetch({
